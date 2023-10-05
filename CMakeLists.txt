@@ -235,6 +235,15 @@ if (${CP_LINK_BLADEBIT_HARVESTER})
   set_property(TARGET chiapos APPEND PROPERTY BUILD_RPATH "$ORIGIN")
   set_property(TARGET ProofOfSpace APPEND PROPERTY BUILD_RPATH "$ORIGIN")
   set_property(TARGET RunTests APPEND PROPERTY BUILD_RPATH "$ORIGIN")
+
+  if(MSVC)
+    add_custom_command(
+      TARGET chiapos
+      POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/libs/green_reaper/lib/bladebit_harvester.dll" $<TARGET_FILE_DIR:chiapos>
+    )
+  endif()
+
 endif()
 
 
