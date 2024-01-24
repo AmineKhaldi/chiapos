@@ -2,6 +2,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.14 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+cmake_policy(SET CMP0148 NEW)
+
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE "RELEASE")
 ENDIF()
@@ -24,13 +26,6 @@ FetchContent_Declare(
   GIT_REPOSITORY https://github.com/pybind/pybind11.git
   GIT_TAG        v2.11.1
 )
-# TODO: Revisit once we get a new pybind11 release
-message("PYBIND11_FINDPYTHON: ${PYBIND11_FINDPYTHON}")
-if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.27)
-  message("CMAKE_VERSION: ${CMAKE_VERSION}")
-  set(PYBIND11_FINDPYTHON ON)
-endif()
-message("PYBIND11_FINDPYTHON now: ${PYBIND11_FINDPYTHON}")
 FetchContent_MakeAvailable(pybind11-src)
 endif()
 
