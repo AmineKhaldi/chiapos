@@ -24,6 +24,13 @@ FetchContent_Declare(
   GIT_REPOSITORY https://github.com/pybind/pybind11.git
   GIT_TAG        v2.11.1
 )
+# TODO: Revisit once we get a new pybind11 release
+message("PYBIND11_FINDPYTHON: ${PYBIND11_FINDPYTHON}")
+if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.27)
+  message("CMAKE_VERSION: ${CMAKE_VERSION}")
+  set(PYBIND11_FINDPYTHON ON)
+endif()
+message("PYBIND11_FINDPYTHON now: ${PYBIND11_FINDPYTHON}")
 FetchContent_MakeAvailable(pybind11-src)
 endif()
 
